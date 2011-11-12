@@ -33,7 +33,7 @@ In the examples you can see how it can test 9 images (300px x 250px) in less tha
 
 > - **Different images example only tooks 296ms.**
 
-> - **Equals images example only tooks 449mx**
+> - **Equals images example only tooks 449ms**
 
 Browser support:
 
