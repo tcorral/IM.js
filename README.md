@@ -53,9 +53,9 @@ I use it in my testing environment. I use Selenium to open the same url in diffe
 of each one. I save it with the same name on one folder, then I open one tool where I implemented IM and use it to
 save the result in the C.I.(Continuous integration) server. All is done in no more than 10 seconds.
 
-[API documentation](https://github.com/tcorral/IM.js/examples_and_documents/jsdoc/index.html)
+[API documentation](http://tcorral.github.com/IM.js/examples_and_documents/jsdoc/index.html)
 
-[Examples](https://github.com/tcorral/IM.js/examples_and_documents/index.html) to see for yourself!
+[Examples](http://tcorral.github.com/IM.js/examples_and_documents/index.html) to see for yourself!
 
 ## Usage
 
@@ -126,9 +126,9 @@ images in an existent environment.
 
 (Links will only work if you clone the repo.)
 
-[API documentation](https://github.com/tcorral/IM.js/examples_and_documents/jsdoc/index.html)
+[API documentation](http://tcorral.github.com/IM.js/examples_and_documents/jsdoc/index.html)
 
-[Examples](https://github.com/tcorral/IM.js/examples_and_documents/index.html) to see for yourself!
+[Examples](http://tcorral.github.com/IM.js/examples_and_documents/index.html) to see for yourself!
 
 ## License
 
