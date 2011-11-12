@@ -49,8 +49,12 @@ Browser support:
 
 The idea of create IM was to automatize the image comparison.
 
-I use it in my testing environment. I use Selenium to open the same url in differents browsers and get a screenshot
-of each one. I save it with the same name on one folder, then I open one tool where I implemented IM and use it to
+I use it in my testing environment.
+
+I use Selenium to open the same url in differents browsers and get a screenshot
+of each one.
+
+I save it with the same name on one folder, then I open one tool where I implemented IM and use it to
 save the result in the C.I.(Continuous integration) server. All is done in no more than 10 seconds.
 
 * 860 bytes only [gzipped version](http://tcorral.github.com/IM.js/versions/IM.gz)
