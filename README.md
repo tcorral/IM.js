@@ -17,9 +17,12 @@ Then my only solution was to check images at pixel info level.
 
 ## Description
 
-IM checks all your images using canvas at pixel level
+IM checks all your images using canvas at pixel level.
+
 When I say compare images at pixel level is compare the image pixel to pixel.
-Yes it sounds hard!
+
+#### Yes it sounds hard! and it is! ;)
+
 I expent a lot of time trying to do it, but some implementations collapse my browser.
 I try the same but using workers with the same result.
 
