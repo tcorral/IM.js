@@ -69,7 +69,7 @@
                 <div class="line"></div>  <!-- Dividing line -->
 
                 <article id="info"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
-                    <h3>IM.js! IM checks all your images using canvas pixel to pixel in record time.</h3>
+                    <h3>IM.js checks all your images using canvas pixel to pixel in record time.</h3>
 
                     <div class="line"></div>
 
@@ -173,7 +173,7 @@
 									</li>
 								</ul>
 
-						<h4>IM.<em>compare(aCanvas, fpSucessCallback, fpFailCallback)</em>
+						<h4>IM.<em>compare(aCanvas, fpSucessCallback, fpFailCallback)</em></h4>
 							<p>This compare mode gets an array of canvas containing the aImages. If all the images are the same the fpSuccessCallback will be executed, if any of the image is different the fpFailCallback will be executed.</p>
 							<h6 class="mLeft40">Params:</h6>
 								<ul class="mLeft80">
@@ -203,7 +203,7 @@
                     <div class="line"></div>
 
                     <div class="articleBody clear">
-                    	<h5>Sets debug mode on:</h4>
+                    	<h5>Sets debug mode on:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>setDebug</strong>(true);
@@ -215,65 +215,65 @@
 	IM.<strong>setDebug</strong>(false);
                     			</code>
                     		</pre>
-                    	<h5>Set asynchronous mode on:</h4>
+                    	<h5>Set asynchronous mode on:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>setAsynchronous</strong>(true);
                     			</code>
                     		</pre>
-                    	<h5>Set asynchronous mode off:</h4>
+                    	<h5>Set asynchronous mode off:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>setAsynchronous</strong>(false);
                     			</code>
                     		</pre>
-                    	<h5>Set asynchronous mode on:</h4>
+                    	<h5>Set asynchronous mode on:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>setAsynchronous</strong>(true);
                     			</code>
                     		</pre>
-                    	<h5>Create a new config image object:</h4>
+                    	<h5>Create a new config image object:</h5>
                     		<pre>
                     			<code>
 	new IM.<strong>image</strong>('path/to/images/image.png', 100, 100);
                     			</code>
                     		</pre>
-                    	<h5>Compare images creating canvas and images using config image objects:</h4>
+                    	<h5>Compare images creating canvas and images using config image objects:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>compare</strong>(document.body,
 	[
 		new IM.image('path/to/images/image.png', 100, 100),
-        new IM.image('path/to/images/image2.png', 100, 100),
-        new IM.image('path/to/images/image.png', 100, 100),
-        new IM.image('path/to/images/image2.png', 100, 100)
+        	new IM.image('path/to/images/image2.png', 100, 100),
+        	new IM.image('path/to/images/image.png', 100, 100),
+        	new IM.image('path/to/images/image2.png', 100, 100)
 	],
 	function success(aCanvas, nElapsedTime) {
-        // Code on success. All images have the same pixel info.
-    },
-    function fail(oCanvas, nElapsedTime) {
-        // Code on failing. Any image is different from others
-    });
+        	// Code on success. All images have the same pixel info.
+    	},
+    	function fail(oCanvas, nElapsedTime) {
+        	// Code on failing. Any image is different from others
+    	});
                     			</code>
                     		</pre>
 
-                    	<h5>Compare images using existent canvas that contains images:</h4>
+                    	<h5>Compare images using existent canvas that contains images:</h5>
                     		<pre>
                     			<code>
 	IM.<strong>compare</strong>(
 	[
 		document.getElementsById("canvas_1"),
-        document.getElementsById("canvas_2"),
-        document.getElementsById("canvas_3"),
-        document.getElementsById("canvas_4")
+        	document.getElementsById("canvas_2"),
+        	document.getElementsById("canvas_3"),
+        	document.getElementsById("canvas_4")
 	],
 	function success(aCanvas, nElapsedTime) {
-        // Code on success. All images have the same pixel info.
-    },
-    function fail(oCanvas, nElapsedTime) {
-        // Code on failing. Any image is different from others
-    });
+        	// Code on success. All images have the same pixel info.
+    	},
+    	function fail(oCanvas, nElapsedTime) {
+       		// Code on failing. Any image is different from others
+    	});
                     			</code>
                     		</pre>
                     </div>

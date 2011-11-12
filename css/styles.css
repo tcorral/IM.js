@@ -10,8 +10,8 @@ header, footer, article, section, hgroup, nav, figure {
 body {
 	/* Setting the default text color, size, page background and a font stack: */
 	font-size:0.825em;
-	color:#fcfcfc;
-	background-color:#000;
+	color:#fff;
+	background-color:#090240;
 	font-family:Arial, Helvetica, sans-serif;
 }
 /* Hyperlink Styles: */
@@ -22,7 +22,7 @@ a, a:visited {
 	outline:none;
 }
 h1, h2{
-	color: #888;
+	color: #fff;
 }
 a:hover {
 	text-decoration:underline;
