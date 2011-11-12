@@ -4,6 +4,7 @@ IM.js is a class to compare images in canvas at pixel level.
 ## Previous to IM
 
 Tools:
+
 * Desktop tools
 * Javascript classes that compare MD5 or base64 result of enconding the image.
 
