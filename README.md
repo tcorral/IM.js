@@ -53,6 +53,10 @@ I use it in my testing environment. I use Selenium to open the same url in diffe
 of each one. I save it with the same name on one folder, then I open one tool where I implemented IM and use it to
 save the result in the C.I.(Continuous integration) server. All is done in no more than 10 seconds.
 
+* 860 bytes only [gzipped version](http://tcorral.github.com/IM.js/versions/IM.gz)
+* 1.72 kb only [minimized version](http://tcorral.github.com/IM.js/versions/IM.min.js)
+* 6.66 kb only [developer version](http://tcorral.github.com/IM.js/versions/IM.js)
+
 [API documentation](http://tcorral.github.com/IM.js/examples_and_documents/jsdoc/index.html)
 
 [Examples](http://tcorral.github.com/IM.js/examples_and_documents/index.html) to see for yourself!
