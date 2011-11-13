@@ -52,6 +52,10 @@ body#index
     color: #fff;
     padding: 5px;
 }
+#canvas_diff
+{
+    overflow: hidden;
+}
 #title_lib
 {
     font-size: 50px;

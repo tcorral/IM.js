@@ -9,14 +9,17 @@
 <div id="result">
     <span id="text">The images are: </span><span id="textResult"></span>
 </div>
+<div id="canvas_diff"></div>
 <script type="text/javascript">
     IM.setDebug(true);
+    IM.setDiff(document.getElementById("canvas_diff"));
     IM.compare(document.body,
     [
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
+        new IM.image('images/png/carta-de-ajuste3.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste3.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
