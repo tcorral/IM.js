@@ -57,9 +57,9 @@ of each one.
 I save it with the same name on one folder, then I open one tool where I implemented IM and use it to
 save the result in the C.I.(Continuous integration) server. All is done in no more than 10 seconds.
 
-* 860 bytes only [gzipped version](http://tcorral.github.com/IM.js/versions/IM.gz)
-* 1.72 kb only [minimized version](http://tcorral.github.com/IM.js/versions/IM.min.js)
-* 6.66 kb only [developer version](http://tcorral.github.com/IM.js/versions/IM.js)
+* 1.11 kb only [gzipped version](http://tcorral.github.com/IM.js/versions/IM.gz)
+* 2.10 kb only [minimized version](http://tcorral.github.com/IM.js/versions/IM.min.js)
+* 8.89 kb only [developer version](http://tcorral.github.com/IM.js/versions/IM.js)
 
 [API documentation](http://tcorral.github.com/IM.js/examples_and_documents/jsdoc/index.html)
 
@@ -129,6 +129,15 @@ images in an existent environment.
     function fail(oCanvas, nElapsedTime) {
         // Code on failing. Any image is different from others
     });
+
+### Create canvas with diff result
+
+This could be used to see the two different images in one same canvas.
+Only needs one DOM element where insert the canvas.
+You can stop diff if you set it to false;
+
+	IM.setDiff(document.getElementById("canvasDiff"));
+
 
 ## Documentation
 

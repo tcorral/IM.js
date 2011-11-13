@@ -46,6 +46,12 @@ body#index
     font-family: Arial, Verdana, sans-serif;
     text-decoration: none;
 }
+#canvasDiff
+{
+    overflow: hidden;
+    color: #fff;
+    padding: 5px;
+}
 #title_lib
 {
     font-size: 50px;
