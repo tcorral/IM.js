@@ -4,27 +4,23 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div id="info">We are comparing three different images but <strong>one of them has one blue pixel in the white
-    column</strong>.</div>
+<div id="info">We are comparing two different images but <strong>that all of them share the same pixel info</strong>.</div>
 <div id="result">
     <span id="text">The images are: </span><span id="textResult"></span>
 </div>
-<div id="canvas_diff"></div>
 <script type="text/javascript">
     IM.setDebug(true);
-    IM.setDiff(document.getElementById("canvas_diff"));
     IM.compare(document.body,
     [
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
-        new IM.image('images/png/carta-de-ajuste3.png', 310, 180),
-        new IM.image('images/png/carta-de-ajuste3.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
-        new IM.image('images/png/carta-de-ajuste.png', 310, 180)
+        new IM.image('images/png/carta-de-ajuste.png', 310, 180),
+        new IM.image('images/png/carta-de-ajuste2.png', 310, 180)
     ],
     function success(aCanvas, nElapsedTime) {
         document.getElementById("textResult").innerHTML = "EQUALS - Compare took " + nElapsedTime + "ms.";
