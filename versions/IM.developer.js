@@ -137,55 +137,34 @@
 			oContext = oCanvas.getContext("2d"),
 			oDataImage = oContext.createImageData(nWidth, nHeight),
 			aCreatedDataImage = oDataImage.data,
-			rData, gData, bData, alphaData,
-			rLastData, gLastData, bLastData, alphaLastData;
+			nData = 0,
+			nRow = 0,
+			nColumn = 0,
+			nX = 0,
+			nY = 0,
+			nLenData = aCreatedDataImage.length;
 		oCanvas.width = nWidth;
 		oCanvas.height = nHeight;
 		oContainer.appendChild(oCanvas);
 
-		for (var i = 0; i < aData.length; i += 4) {
-			rData = aData[i + 0];
-			gData = aData[i + 1];
-			bData = aData[i + 2];
-			alphaData = aData[i + 3];
+		for(nData = nLenData - 1; nData > 0; nData = nData - 4)
+		{
+			aCreatedDataImage[nData] = 255;
+		}
 
-			rLastData = aLastData[i];
-			gLastData = aLastData[i + 1];
-			bLastData = aLastData[i + 2];
-			alphaLastData = aLastData[i + 3];
-
-			if(rData !== rLastData)
-			{
-				aCreatedDataImage[i + 0] = rData > rLastData? rData - rLastData : gLastData - rData;
-			}else
-			{
-				aCreatedDataImage[i + 0] = aData[i + 0];
+		for (nRow = aDataImage.height; nRow--;) {
+			for (nColumn = aDataImage.width; nColumn--;) {
+				nX = 4 * (nRow * nWidth + nColumn);
+				nY = 4 * (nRow * aDataImage.width + nColumn);
+				aCreatedDataImage[nX + 0] = Math.abs(aData[nY + 0] - aLastData[nY + 0]); // r
+				aCreatedDataImage[nX + 1] =  Math.abs(aData[nY + 1] - aLastData[nY + 1]); // g
+				aCreatedDataImage[nX + 2] =  Math.abs(aData[nY + 2] - aLastData[nY + 2]); // b
 			}
-			if(gData !== gLastData)
-			{
-				aCreatedDataImage[i + 1] = gData > gLastData? gData - gLastData : gLastData - gData;
-			}else
-			{
-				aCreatedDataImage[i + 1] = aData[i + 1];
-			}
-			if(bData !== bLastData)
-			{
-				aCreatedDataImage[i + 2] = bData > bLastData? bData - bLastData : bLastData - bData;
-			}else
-			{
-				aCreatedDataImage[i + 2] = aData[i + 2];
-			}
-			if(alphaData !== alphaLastData)
-			{
-				aCreatedDataImage[i + 3] = alphaData > gLastData? alphaLastData - alphaLastData : alphaLastData - alphaData;
-			}else
-			{
-				aCreatedDataImage[i + 3] = aData[i + 3];
-			}
-	  }
+		}
 
 		oContext.putImageData(oDataImage, 0, 0);
 	}
+
 	/**
 	 * createAndCompare creates canvas in oContainer and adding images to these canvas, then compare it
 	 * @private

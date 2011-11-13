@@ -132,7 +132,7 @@ images in an existent environment.
 
 ### Create canvas with diff result
 
-This could be used to see the two different images in one same canvas.
+This could be used to see the result of differences in images in one canvas.
 Only needs one DOM element where insert the canvas.
 You can stop diff if you set it to false;
 
