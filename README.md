@@ -169,8 +169,6 @@ You can modify the percentage to mark an image ok or ko.
 
 ## Documentation
 
-(Links will only work if you clone the repo.)
-
 [API documentation](http://tcorral.github.com/IM.js/examples_and_documents/jsdoc/index.html)
 
 [Examples](http://tcorral.github.com/IM.js/examples_and_documents/index.html) to see for yourself!
