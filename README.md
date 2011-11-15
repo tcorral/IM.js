@@ -1,6 +1,27 @@
 # IM.js
 IM.js is a class to compare images in canvas at pixel level.
 
+## Changelog
+
+1.2.0
+
+* Added setPercentageDiff method to set the tolerance percentage
+* Changed algorithm to see the differences in canvas.
+** Now all the matching pixels will be showed transparent and the not matching pixels will be showed as they are
+showed in the image that is different. The canvas is bordered to show its bounds.
+
+1.1.0
+
+* Added setDiff method to get diff image in canvas
+** All the matching pixels will be showed in black and the not matching pixels will be showed inverting the color.
+
+1.0.0
+
+* Using compare you can create image in canvas at the same time to make the compare or compare canvas with images
+without the need of create them.
+* The result of compare is sent to the callbacks that tell if the image are equals or not.
+* The first canvas with image info different from the previous images is marked with one red border.
+
 ## Previous to IM
 
 Tools:
