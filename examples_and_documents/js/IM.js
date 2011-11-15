@@ -13,6 +13,12 @@
 		 */
 			oContainerDiff = null,
 		/**
+		 *  nMinPercentage is the tolerance to set a difference between images as ok.
+		 *  @private
+		 *  @type Number
+		 */
+			nMinPercentage = 100,
+		/**
 		 * bAsynchronous is a private flag to know if we want to execute the comparison using asynchronous mode or not.
 		 * @private
 		 * @type Boolean
@@ -35,7 +41,51 @@
 		 * @private
 		 * @type Function
 		 */
-			fpLoop = loop;
+			fpLoop = loop,
+		/**
+		 * proxyFloat is a proxy where save the parseFloat to use in parseFloat in local
+		 */
+			proxyFloat = window.parseFloat;
+
+	/**
+	 * parseFloat to return
+	 * @param number
+	 */
+	function parseFloat(number) {
+		var nDecimals = 4,
+			stringNumber = number.toString(),
+			decimalTypes = [".",","],
+			lastDec, posFinal, numberMore, result, decimalType, decimals, pos;
+
+		for (var i = 0; i < decimalTypes.length; i++) {
+			pos = stringNumber.indexOf(decimalTypes[i]);
+			if (pos != -1) {
+				decimalType = decimalTypes[i];
+				break;
+			}
+		}
+
+		decimals = (stringNumber.length - 1) - pos;
+		if (typeof nDecimals != "undefined") {
+			decimals = nDecimals;
+		}
+		posFinal = pos + (decimals + 1);
+		if (pos != -1) {
+			lastDec = stringNumber.substr(posFinal, 1);
+			stringNumber = stringNumber.substr(0, posFinal);
+			if (lastDec >= 5) {
+				numberMore = stringNumber.substr(stringNumber.length - 1, 1);
+				if (numberMore == decimalType) {
+					stringNumber = (stringNumber.substr(0, stringNumber.length - 1) * 1) + 1;
+				} else {
+					stringNumber = stringNumber.substr(0, stringNumber.length - 1) + ((numberMore * 1) + 1);
+				}
+
+			}
+		}
+		result = proxyFloat(stringNumber);
+		return result;
+	}
 
 	/**
 	 * loopWithoutBlocking is a function to process items in asynchronous mode to avoid the environment to be freeze.
@@ -94,7 +144,8 @@
 	function compareWithoutCreate(aCanvas, fpSuccess, fpFail, nStart) {
 		var sLastData = null,
 			oLastImageData = null,
-			nElapsedTime = undefined;
+			nElapsedTime = undefined,
+			nPercentageDiff = undefined;
 		if (bDebug && typeof nStart === "undefined") {
 			nStart = +new Date();
 		}
@@ -104,18 +155,19 @@
 				sData = JSON.stringify([].slice.call(aCanvasData.data));
 			if (sLastData !== null) {
 				if (sLastData.localeCompare(sData) !== 0) {
-					if (oContainerDiff) {
-						diff(oContainerDiff, oCanvas.width, oCanvas.height, aCanvasData, oLastImageData);
-					}
 					if (bDebug) {
 						oCanvas.className = "fail";
 						nElapsedTime = (+new Date() - nStart);
-						console.log("Fail -> Time: " + nElapsedTime);
-
-						console.log("Failing  canvas is: ");
-						console.log(document.getElementById("canvasCompare_" + nIndex));
 					}
-					fpFail(oCanvas, nElapsedTime);
+					if (oContainerDiff) {
+						nPercentageDiff = diff(oContainerDiff, oCanvas.width, oCanvas.height, aCanvasData, oLastImageData);
+						if (nPercentageDiff >= nMinPercentage) {
+							fpSuccess(aCanvas, nElapsedTime, nPercentageDiff);
+							return false;
+						}
+					}
+
+					fpFail(oCanvas, nElapsedTime, nPercentageDiff);
 					return false;
 				}
 			}
@@ -124,7 +176,6 @@
 		}, function (aCanvas) {
 			if (bDebug) {
 				nElapsedTime = (+new Date() - nStart);
-				console.log("Success -> Time: " + nElapsedTime);
 			}
 			fpSuccess(aCanvas, nElapsedTime);
 		});
@@ -133,6 +184,9 @@
 	function diff(oContainer, nWidth, nHeight, aDataImage, aLastDataImage) {
 		var aData = aDataImage.data,
 			aLastData = aLastDataImage.data,
+			nLenPixels = 0,
+			nDiffPixels = 0,
+			nDiffPercentage = 0,
 			oCanvas = document.createElement("canvas"),
 			oContext = oCanvas.getContext("2d"),
 			oDataImage = oContext.createImageData(nWidth, nHeight),
@@ -142,27 +196,49 @@
 			nColumn = 0,
 			nX = 0,
 			nY = 0,
-			nLenData = aCreatedDataImage.length;
+			nLenData = aCreatedDataImage.length,
+			nRed, nGreen, nBlue, nAlpha, nLastRed, nLastGreen, nLastBlue, nLastAlpha;
 		oCanvas.width = nWidth;
 		oCanvas.height = nHeight;
+		oCanvas.style.border = "#000 1px solid";
 		oContainer.appendChild(oCanvas);
 
-		for(nData = nLenData - 1; nData > 0; nData = nData - 4)
-		{
+		for (nData = nLenData - 1; nData > 0; nData = nData - 4) {
 			aCreatedDataImage[nData] = 255;
 		}
-
+		nLenPixels = aDataImage.height * aDataImage.width;
 		for (nRow = aDataImage.height; nRow--;) {
 			for (nColumn = aDataImage.width; nColumn--;) {
 				nX = 4 * (nRow * nWidth + nColumn);
 				nY = 4 * (nRow * aDataImage.width + nColumn);
-				aCreatedDataImage[nX + 0] = Math.abs(aData[nY + 0] - aLastData[nY + 0]); // r
-				aCreatedDataImage[nX + 1] =  Math.abs(aData[nY + 1] - aLastData[nY + 1]); // g
-				aCreatedDataImage[nX + 2] =  Math.abs(aData[nY + 2] - aLastData[nY + 2]); // b
+				nRed = aData[nY + 0];
+				nGreen = aData[nY + 1];
+				nBlue = aData[nY + 2];
+				nAlpha = aData[nY + 3];
+				nLastRed = aLastData[nY + 0];
+				nLastGreen = aLastData[nY + 1];
+				nLastBlue = aLastData[nY + 2];
+				nLastAlpha = aLastData[nY + 3];
+
+				if (nRed === nLastRed && nGreen === nLastGreen && nBlue === nLastBlue && nAlpha === nLastAlpha) {
+					aCreatedDataImage[nX + 0] = Math.abs(aData[nY + 0] - aLastData[nY + 0]); // r
+					aCreatedDataImage[nX + 1] = Math.abs(aData[nY + 1] - aLastData[nY + 1]); // g
+					aCreatedDataImage[nX + 2] = Math.abs(aData[nY + 2] - aLastData[nY + 2]); // b
+					aCreatedDataImage[nX + 3] = Math.abs(aData[nY + 3] - aLastData[nY + 3]); // a
+				} else {
+					nDiffPixels++;
+					aCreatedDataImage[nX + 0] = aData[nY + 0]; // r
+					aCreatedDataImage[nX + 1] = aData[nY + 1]; // g
+					aCreatedDataImage[nX + 2] = aData[nY + 2]; // b
+					aCreatedDataImage[nX + 3] = aData[nY + 3]; // a
+				}
+
 			}
 		}
 
 		oContext.putImageData(oDataImage, 0, 0);
+		nDiffPercentage = Math.abs((((nDiffPixels - nLenPixels) / nLenPixels) * 100));
+		return parseFloat(nDiffPercentage);
 	}
 
 	/**
@@ -203,9 +279,6 @@
 				}, 25);
 			} else {
 				compareWithoutCreate(aCanvas, fpSuccess, fpFail, nStart);
-				if (bDebug && bAsynchronous) {
-					console.log("After compare -> Time: " + (+new Date() - nStart));
-				}
 			}
 		});
 	}
@@ -234,7 +307,7 @@
 	}
 
 	/**
-	 * setDebug is the method to set the debug to allow check the incorrect canvas and log in console how many time it tooks.
+	 * setDebug is the method to set the debug to allow check the incorrect canvas and log how many time it tooks.
 	 * @member IM.prototype
 	 * @param bLocalDebug
 	 * @returns {Boolean} bDebug
@@ -263,6 +336,17 @@
 	IM.prototype.setDiff = function setDiff(oLocalContainerDiff) {
 		oContainerDiff = oLocalContainerDiff;
 		return oContainerDiff;
+	};
+	/**
+	 * setPercentageDiff must be used if you want to check if the match you want is correct.
+	 * It is important to assign a tolerance of difference between images.
+	 * If the image has a difference lower than nMinPercentage the image will be treated as ok.
+	 * @member IM.prototype
+	 * @param {Number} nMinPercentage
+	 */
+	IM.prototype.setPercentageDiff = function percentageDiff(nMinPercent) {
+		nMinPercentage = nMinPercent;
+		return nMinPercentage;
 	};
 	/**
 	 * Compare is the method that change the behaviour if it's needed to create canvas or not.
