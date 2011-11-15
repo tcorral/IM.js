@@ -13,23 +13,29 @@
 <script type="text/javascript">
     IM.setDebug(true);
     IM.setDiff(document.getElementById("canvas_diff"));
+    IM.setPercentageDiff(1);
     IM.compare(document.body,
     [
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
+        new IM.image('images/meninas kingston house.jpg', 310, 180),
         new IM.image('images/png/carta-de-ajuste3.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
         new IM.image('images/png/carta-de-ajuste.png', 310, 180)
     ],
-    function success(aCanvas, nElapsedTime) {
-        document.getElementById("textResult").innerHTML = "EQUALS - Compare took " + nElapsedTime + "ms.";
+    function success(aCanvas, nElapsedTime, nPercentageDiff) {
+        document.getElementById("textResult").innerHTML = "OK - Compare took " + nElapsedTime + "ms." +
+                                                             " - The images match each other in a " +
+                                                                nPercentageDiff + "%."
     },
-    function fail(oCanvas, nElapsedTime) {
-        document.getElementById("textResult").innerHTML = "DIFFERENT - Compare took " + nElapsedTime + "ms.";
+    function fail(oCanvas, nElapsedTime, nPercentageDiff) {
+        document.getElementById("textResult").innerHTML = "KO - Compare took " + nElapsedTime + "ms." +
+                                                            " - The images match each other in a " +
+                                                                nPercentageDiff + "%."
     });
 </script>
 </body>
