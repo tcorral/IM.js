@@ -1,7 +1,7 @@
 (function (global) {
 	'use strict';
 	/**
-	 * bDebug is a private flag to know if we want to know what's happening (Log use console.log).
+	 * bDebug is a private flag to know if we want to know what's happening.
 	 * @private
 	 * @type Boolean
 	 */
@@ -221,10 +221,10 @@
 				nLastAlpha = aLastData[nY + 3];
 
 				if (nRed === nLastRed && nGreen === nLastGreen && nBlue === nLastBlue && nAlpha === nLastAlpha) {
-					aCreatedDataImage[nX + 0] = Math.abs(aData[nY + 0] - aLastData[nY + 0]); // r
-					aCreatedDataImage[nX + 1] = Math.abs(aData[nY + 1] - aLastData[nY + 1]); // g
-					aCreatedDataImage[nX + 2] = Math.abs(aData[nY + 2] - aLastData[nY + 2]); // b
-					aCreatedDataImage[nX + 3] = Math.abs(aData[nY + 3] - aLastData[nY + 3]); // a
+					aCreatedDataImage[nX + 0] = Math.abs(nRed - nLastRed); // r
+					aCreatedDataImage[nX + 1] = Math.abs(nGreen - nLastGreen); // g
+					aCreatedDataImage[nX + 2] = Math.abs(nBlue - nLastBlue); // b
+					aCreatedDataImage[nX + 3] = Math.abs(nAlpha - nLastAlpha); // a
 				} else {
 					nDiffPixels++;
 					aCreatedDataImage[nX + 0] = aData[nY + 0]; // r
