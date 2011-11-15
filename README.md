@@ -138,6 +138,13 @@ You can stop diff if you set it to false;
 
 	IM.setDiff(document.getElementById("canvasDiff"));
 
+### Set diff percentage number of acceptance
+
+Default value of acceptance is 100%.
+You can modify the percentage to mark an image ok or ko.
+
+	IM.setPercentageDiff(80);
+
 
 ## Documentation
 
