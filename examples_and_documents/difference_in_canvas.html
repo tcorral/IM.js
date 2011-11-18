@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/IM.js"></script>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body id="index">
+        <h1><span>IM.js</span> <br/> Quick image comparison pixel by pixel.</h1>
+        <div id="middle">
+            <div id="result">
+                <span id="text">The images are: </span><span id="textResult"></span>
+            </div>
+            <div id="container">
+                <div id="diff_canvas"></div>
+            </div>
+        </div>
+        <div id="projects">
+            <div class="title">Other projects:</div>
+            <ul class="other_projects">
+                <li>
+                    <a href="http://tcorral.github.com/Hydra.js/">Hydra.js</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/Hermes.js/">Hermes.js</a>
+                </li>
+                <li>
+                    <a href="https://github.com/tcorral/Design-Patterns-in-Javascript/">Design Patterns</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/Cutter.js/">Cutter.js</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/CSSplus/">CSSplus</a>
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            IM.setDebug(true);
+            IM.showDiffInCanvas(document.getElementById("diff_canvas"));
+            IM.compare(document.getElementById("container"),
+            [
+                new IM.image('images/png/carta-de-ajuste.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste_meninas.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste2.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste.png', 310, 180),
+                new IM.image('images/png/carta-de-ajuste2.png', 310, 180)
+            ],
+            function success(aCanvas, nElapsedTime, nPercentageDiff) {
+                document.getElementById("textResult").innerHTML = "OK - Compare took " + nElapsedTime + "ms." +
+                                                                     " - The images match each other in a " +
+                                                                        nPercentageDiff + "%."
+            },
+            function fail(oCanvas, nElapsedTime, nPercentageDiff) {
+                document.getElementById("textResult").innerHTML = "KO - Compare took " + nElapsedTime + "ms." +
+                                                                    " - The images match each other in a " +
+                                                                        nPercentageDiff + "%."
+            });
+        </script>
+    </body>
+</html>

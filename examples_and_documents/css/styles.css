@@ -1,14 +1,68 @@
 body {
-    background-color: #666;
+    background-color: #fff;
     margin: 0 auto;
     width: 1004px;
+    font-family: Arial, Verdana, sans-serif;
+    background: transparent url(../images/tree.jpg) right bottom no-repeat;
 }
-body#index
+#diff_canvas
 {
-    height: 267px;
-    width: 410px;
+    overflow: hidden;
+}
+canvas
+{
+    border: #ccc 1px solid;
+}
+#middle
+{
+    height: 360px;
+    width: 900px;
+}
+#container
+{
+    height: 320px;
+    width: 822px;
+    overflow: auto;
+    padding-left: 77px;
+}
+body
+{
     margin:  0 auto;
-    margin-top: 100px;
+    margin-top: 40px;
+    display: block;
+}
+#projects
+{
+    display: block;
+    margin-top: 90px;
+    width: 900px;
+    height: 90px;
+}
+#projects div.title
+{
+    font-size: 14px;
+}
+.other_projects
+{
+    list-style-type: none;
+}
+.other_projects li
+{
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 15%;
+}
+.other_projects li a
+{
+    font-size: 12px;
+    text-decoration: none;
+    color: #666;
+}
+.other_projects li a:hover
+{
+    font-weight: bold;
+    color: #000;
 }
 #header
 {
@@ -37,14 +91,68 @@ body#index
     padding-left: 20px;
     font-family: Arial, Verdana, sans-serif;
 }
-#links .item a
+h1
 {
-    width: 300px;
-    display: block;
-    color: #fff;
-    font-size: 20px;
-    font-family: Arial, Verdana, sans-serif;
+    background: transparent url(../images/logo.png) left top no-repeat;
+    width: 854px;
+    height: 115px;
+    padding-top: 10px;
+    padding-left: 150px;
+}
+h1 span
+{
+    font-size: 50px;
+}
+ul#links li
+{
+    height: 38px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+ul#links li span.left
+{
+    height: 38px;
+    background: transparent url(../images/lists/normal/left_normal.png) left top no-repeat;
+    display:block;
+    float:left;
+    width: 6px;
+}
+ul#links li a
+{
+    height: 28px;
+    background: transparent url(../images/lists/normal/middle_normal.png) left top repeat-x;
+    padding-top: 10px;
+    padding-left: 10px;
+    display:block;
+    float:left;
+    width: 790px;
+    color: #666;
+    font-size: 14px;
     text-decoration: none;
+}
+ul#links li span.right
+{
+    height: 38px;
+    background: transparent url(../images/lists/normal/right_normal.png) right top no-repeat;
+    display:block;
+    float:left;
+    width: 28px;
+}
+
+ul#links li:hover span.left
+{
+    background: transparent url(../images/lists/over/left_over.png) left top no-repeat;
+}
+ul#links li:hover a
+{
+    background: transparent url(../images/lists/over/middle_over.png) left top repeat-x;
+    color: #0b0080;
+    font-weight: bold;
+}
+ul#links li:hover span.right
+{
+    background: transparent url(../images/lists/over/right_over.png) right top no-repeat;
 }
 #canvasDiff
 {
@@ -96,13 +204,9 @@ canvas {
     line-height: 20px;
 }
 ul#links{
-    height: 267px;
-    width: 410px;
-    background: transparent url(../images/links.png) left top no-repeat;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    padding-top: 26px;
     padding-left: 14px;
 }
 #text{

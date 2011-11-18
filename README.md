@@ -157,14 +157,14 @@ This could be used to see the result of differences in images in one canvas.
 Only needs one DOM element where insert the canvas.
 You can stop diff if you set it to false;
 
-	IM.setDiff(document.getElementById("canvasDiff"));
+	IM.showDiffInCanvas(document.getElementById("canvasDiff"));
 
-### Set diff percentage number of acceptance
+### Set tolerance percentage
 
-Default value of acceptance is 100%.
+Default value of tolerance is 100%.
 You can modify the percentage to mark an image ok or ko.
 
-	IM.setPercentageDiff(80);
+	IM.setTolerance(80);
 
 
 ## Documentation
