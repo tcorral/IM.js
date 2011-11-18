@@ -1,20 +1,6 @@
 <html>
     <head>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript">
-			function forceRefresh()
-			{
-				var oHead = document.getElementsByTagName("head")[0];
-				var oStyleSheet = document.createElement("style");
-				if(document.getElementById("force"))
-				{
-					oHead.removeChild(document.getElementById("force"));
-				}
-
-				oStyleSheet.id = "force";
-				oHead.appendChild(oStyleSheet);
-			}
-        </script>
          <script type="text/javascript">
 
 			var _gaq = _gaq || [];
@@ -41,28 +27,29 @@
         </hgroup>
         <ul id="nav">
         	<li>
-        		<a href="#info" onclick="forceRefresh()">Info</a>
+        		<a href="#info" class="internal">Info</a>
         	</li>
         	<li>
-        		<a href="#api" onclick="forceRefresh()">API</a>
+        		<a href="#api" class="internal">API</a>
         	</li>
         	<li>
-        		<a href="#code_examples" onclick="forceRefresh()">Code examples</a>
+        		<a href="#code_examples" class="internal">Code examples</a>
         	</li>
         	<li>
         		<a href="http://tcorral.github.com/IM.js/examples_and_documents/index.html">Examples</a>
         	</li>
         	<li>
-        		<a href="#download" onclick="forceRefresh()">Download</a>
+        		<a href="#download" class="internal">Download</a>
         	</li>
         	<li>
-        		<a href="#license" onclick="forceRefresh()">License</a>
+        		<a href="#license" class="internal">License</a>
         	</li>
         </ul>
         <section id="middle">
 			<ul>
-				<li id="info">
-					<article> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+				<li>
+					<article id="info"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+						<a href="#" class="internal">Go up</a>
 	                    <h3>IM.js checks all your images using canvas pixel by pixel in record time.</h3>
 
 	                    <div class="line"></div>
@@ -100,10 +87,10 @@
 	                        	&lt;script type="text/javascript" src="/path/to/IM.js"&gt;&lt;/script&gt;<br/>
 	                        </p>
 	                    </div>
+						<a href="#" class="internal">Go up</a>
 	                </article>
-				</li>
-				<li id="api">
-					<article>
+					<article id="api">
+						<a href="#" class="internal">Go up</a>
 	                    <h3>IM.js API</h3>
 
 	                    <div class="line"></div>
@@ -193,10 +180,10 @@
 										</li>
 									</ul>
 	                    </div>
+						<a href="#" class="internal">Go up</a>
 	                </article>
-				</li>
-				<li id="code_examples">
-					<article>
+					<article id="code_examples">
+						<a href="#" class="internal">Go up</a>
 	                    <h3>Code examples</h3>
 
 	                    <div class="line"></div>
@@ -288,10 +275,10 @@
 	                    			</code>
 	                    		</pre>
 	                    </div>
+						<a href="#" class="internal">Go up</a>
 	                </article>
-				</li>
-				<li id="download">
 					<article id="download"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+						<a href="#" class="internal">Go up</a>
                     <h3>IM.js download.</h3>
 
                     <div class="line"></div>
@@ -312,10 +299,10 @@
                     		</li>
                     	</ul>
                     </div>
+						<a href="#" class="internal">Go up</a>
                 </article>
-				</li>
-				<li id="license">
 					<article id="license">
+						<a href="#" class="internal">Go up</a>
 	                    <h3>IM.js License:</h3>
 
 	                    <div class="line"></div>
@@ -343,6 +330,7 @@
 							</code>
 	                   		</pre>
 	                    </div>
+						<a href="#" class="internal">Go up</a>
 	                </article>
 				</li>
 			</ul>
@@ -368,5 +356,17 @@
             </ul>
         </div>
         <a href="http://github.com/tcorral/IM.js/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.scrollTo-min.js"></script>
+
+        <script type="text/javascript">
+        	$(document).ready(function()
+        	{
+        		$("a.internal", document.getElementById("nav")).click(function(){
+        			$(window).scrollTo(document.getElementById($(this).attr("href").replace("#", "")), 300);
+        			return false;
+        		});
+        	});
+        </script>
     </body>
 </html>
