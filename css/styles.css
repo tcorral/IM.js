@@ -84,7 +84,7 @@ canvas
 	padding: 0;
 	overflow: hidden;
 }
-a.internal
+a, a.internal
 {
 	color: #444;
 	font-weight: bold;
