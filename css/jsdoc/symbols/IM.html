@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - _global_</title>
+		<title>JsDoc Reference - IM</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -202,27 +202,52 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Built-In Namespace _global_
+				Class IM
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
+				<br />Version
+					1.0.<br />
 				
 				
 			
+				Represents an Image Match
 				
 				
+					<br /><i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class IM.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/IM.html#constructor">IM</a></b>()
+							</div>
+							<div class="description">IM (Image Match) is a class to compare images using canvas at pixel level</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			
 
 <!-- ============================== properties summary ===================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class _global_.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class IM.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -233,72 +258,12 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#aCanvas">aCanvas</a></b>
-								</div>
-								<div class="description">Array of canvas that are created dynamically.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#bAsynchronous">bAsynchronous</a></b>
-								</div>
-								<div class="description">bAsynchronous is a private flag to know if we want to execute the comparison using asynchronous mode or not.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#fpLoop">fpLoop</a></b>
-								</div>
-								<div class="description">fpLoop is a method that will save the asynchronous or not loop type</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#nImagesLoaded">nImagesLoaded</a></b>
-								</div>
-								<div class="description">Number of image that are loaded not important to know if are loaded or with error.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#nMinPercentage">nMinPercentage</a></b>
-								</div>
-								<div class="description">nMinPercentage is the tolerance to set a difference between images as ok.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#oContainerDiff">oContainerDiff</a></b>
-								</div>
-								<div class="description">oContainerDiff is a container where create the canvas element with the result.</div>
-							</td>
-						</tr>
-					
-						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/_global_.html#proxyFloat">proxyFloat</a></b>
+								<b><a href="../symbols/IM.html#image">image</a></b>
 								</div>
-								<div class="description">proxyFloat is a proxy where save the parseFloat to use in parseFloat in local</div>
+								<div class="description">Image is a reference to ImageToCompare.</div>
 							</td>
 						</tr>
 					
@@ -311,10 +276,82 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class IM.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/IM.html#compare">compare</a></b>(oContainer/aCanvas, aElements/fpSuccess, fpSuccess/fpFail, fpFail)
+								</div>
+								<div class="description">Compare is the method that change the behaviour if it's needed to create canvas or not.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/IM.html#setAsynchronous">setAsynchronous</a></b>(bLocalAsynchronous)
+								</div>
+								<div class="description">Change the loop type to and from asynchronous.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/IM.html#setDebug">setDebug</a></b>(bDeb)
+								</div>
+								<div class="description">setDebug is the method to set the debug to allow check the incorrect canvas and log in console how many time it tooks.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
 <!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>IM</b>()
+				</div>
+				
+				<div class="description">
+					IM (Image Match) is a class to compare images using canvas at pixel level
+					<br /><i>Author: </i>Tomas Corral Casas.
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
 			
 
 <!-- ============================== field details ========================== -->		
@@ -323,168 +360,15 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="aCanvas"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Array}</span>
-					<b>aCanvas</b>
-					
-					</div>
-					<div class="description">
-						Array of canvas that are created dynamically.
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="bAsynchronous"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Boolean}</span>
-					<b>bAsynchronous</b>
-					
-					</div>
-					<div class="description">
-						bAsynchronous is a private flag to know if we want to execute the comparison using asynchronous mode or not.
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="fpLoop"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Function}</span>
-					<b>fpLoop</b>
-					
-					</div>
-					<div class="description">
-						fpLoop is a method that will save the asynchronous or not loop type
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="nImagesLoaded"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Number}</span>
-					<b>nImagesLoaded</b>
-					
-					</div>
-					<div class="description">
-						Number of image that are loaded not important to know if are loaded or with error.
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="nMinPercentage"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Number}</span>
-					<b>nMinPercentage</b>
-					
-					</div>
-					<div class="description">
-						nMinPercentage is the tolerance to set a difference between images as ok.
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="oContainerDiff"> </a>
-					<div class="fixedFont">&lt;private&gt; 
-					
-					<span class="light">{Object}</span>
-					<b>oContainerDiff</b>
-					
-					</div>
-					<div class="description">
-						oContainerDiff is a container where create the canvas element with the result.
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="proxyFloat"> </a>
+					<a name="image"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>proxyFloat</b>
+					<b>image</b>
 					
 					</div>
 					<div class="description">
-						proxyFloat is a proxy where save the parseFloat to use in parseFloat in local
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/source_IM.js.html">IM.js</a>.
+						Image is a reference to ImageToCompare.
 						
 						
 					</div>
@@ -502,6 +386,151 @@ ul.inheritsList
 
 <!-- ============================== method details ========================= -->		
 			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="compare"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>compare</b>(oContainer/aCanvas, aElements/fpSuccess, fpSuccess/fpFail, fpFail)
+					
+					</div>
+					<div class="description">
+						Compare is the method that change the behaviour if it's needed to create canvas or not.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>oContainer/aCanvas</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>aElements/fpSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>fpSuccess/fpFail</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>fpFail</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setAsynchronous"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>setAsynchronous</b>(bLocalAsynchronous)
+					
+					</div>
+					<div class="description">
+						Change the loop type to and from asynchronous.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>bLocalAsynchronous</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> bLocalAsynchronous</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setDebug"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>setDebug</b>(bDeb)
+					
+					</div>
+					<div class="description">
+						setDebug is the method to set the debug to allow check the incorrect canvas and log in console how many time it tooks.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>bDeb</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> bDebug</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
 			
 <!-- ============================== event details ========================= -->		
 			
@@ -513,7 +542,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			&copy;2011<br />
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 18 2011 01:23:41 GMT+0100 (CET)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Nov 12 2011 20:56:33 GMT+0100 (CET)
 		</div>
 	</body>
 </html>

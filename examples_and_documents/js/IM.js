@@ -1,7 +1,7 @@
 (function (global) {
 	'use strict';
 	/**
-	 * bDebug is a private flag to know if we want to know what's happening (Log use console.log).
+	 * bDebug is a private flag to know if we want to know what's happening.
 	 * @private
 	 * @type Boolean
 	 */
@@ -123,10 +123,11 @@
 	 */
 	function loop(aItems, fpProcess, fpFinish) {
 		var aCopy = aItems.concat();
-		var nIndex = aItems.length - 1;
+		var nIndex = aItems.length ;
 		var oItem = null;
 		while (Boolean(oItem = aCopy.shift())) {
 			nIndex--;
+
 			if (fpProcess(oItem, nIndex) === false) {
 
 				return;
@@ -145,7 +146,9 @@
 		var sLastData = null,
 			oLastImageData = null,
 			nElapsedTime = undefined,
-			nPercentageDiff = undefined;
+			nPercentageDiff = undefined,
+			oDiffObject = null,
+			oDiffCanvas = null;
 		if (bDebug && typeof nStart === "undefined") {
 			nStart = +new Date();
 		}
@@ -155,18 +158,20 @@
 				sData = JSON.stringify([].slice.call(aCanvasData.data));
 			if (sLastData !== null) {
 				if (sLastData.localeCompare(sData) !== 0) {
-					if (bDebug) {
-						oCanvas.className = "fail";
-						nElapsedTime = (+new Date() - nStart);
+					oDiffObject = diff(oCanvas.width, oCanvas.height, aCanvasData, oLastImageData);
+					nPercentageDiff = oDiffObject.percentage;
+					oDiffCanvas = oDiffObject.canvas;
+					if (nPercentageDiff >= nMinPercentage)
+					{
+						return true;
 					}
 					if (oContainerDiff) {
-						nPercentageDiff = diff(oContainerDiff, oCanvas.width, oCanvas.height, aCanvasData, oLastImageData);
-						if (nPercentageDiff >= nMinPercentage) {
-							fpSuccess(aCanvas, nElapsedTime, nPercentageDiff);
-							return false;
-						}
+						oContainerDiff.appendChild(oDiffCanvas);
 					}
-
+					oCanvas.className = "fail";
+					if (bDebug) {
+						nElapsedTime = (+new Date() - nStart);
+					}
 					fpFail(oCanvas, nElapsedTime, nPercentageDiff);
 					return false;
 				}
@@ -177,11 +182,11 @@
 			if (bDebug) {
 				nElapsedTime = (+new Date() - nStart);
 			}
-			fpSuccess(aCanvas, nElapsedTime);
+			fpSuccess(aCanvas, nElapsedTime, nPercentageDiff);
 		});
 	}
 
-	function diff(oContainer, nWidth, nHeight, aDataImage, aLastDataImage) {
+	function diff(nWidth, nHeight, aDataImage, aLastDataImage) {
 		var aData = aDataImage.data,
 			aLastData = aLastDataImage.data,
 			nLenPixels = 0,
@@ -201,7 +206,6 @@
 		oCanvas.width = nWidth;
 		oCanvas.height = nHeight;
 		oCanvas.style.border = "#000 1px solid";
-		oContainer.appendChild(oCanvas);
 
 		for (nData = nLenData - 1; nData > 0; nData = nData - 4) {
 			aCreatedDataImage[nData] = 255;
@@ -221,10 +225,10 @@
 				nLastAlpha = aLastData[nY + 3];
 
 				if (nRed === nLastRed && nGreen === nLastGreen && nBlue === nLastBlue && nAlpha === nLastAlpha) {
-					aCreatedDataImage[nX + 0] = Math.abs(aData[nY + 0] - aLastData[nY + 0]); // r
-					aCreatedDataImage[nX + 1] = Math.abs(aData[nY + 1] - aLastData[nY + 1]); // g
-					aCreatedDataImage[nX + 2] = Math.abs(aData[nY + 2] - aLastData[nY + 2]); // b
-					aCreatedDataImage[nX + 3] = Math.abs(aData[nY + 3] - aLastData[nY + 3]); // a
+					aCreatedDataImage[nX + 0] = Math.abs(nRed - nLastRed); // r
+					aCreatedDataImage[nX + 1] = Math.abs(nGreen - nLastGreen); // g
+					aCreatedDataImage[nX + 2] = Math.abs(nBlue - nLastBlue); // b
+					aCreatedDataImage[nX + 3] = Math.abs(nAlpha - nLastAlpha); // a
 				} else {
 					nDiffPixels++;
 					aCreatedDataImage[nX + 0] = aData[nY + 0]; // r
@@ -238,7 +242,10 @@
 
 		oContext.putImageData(oDataImage, 0, 0);
 		nDiffPercentage = Math.abs((((nDiffPixels - nLenPixels) / nLenPixels) * 100));
-		return parseFloat(nDiffPercentage);
+		return {
+			percentage: parseFloat(nDiffPercentage),
+			canvas: oCanvas
+		};
 	}
 
 	/**
@@ -328,23 +335,23 @@
 		return bLocalAsynchronous;
 	};
 	/**
-	 * setDiff is the method that sets the diff mode to create a canvas with the difference
+	 * showDiffInCanvas is the method that sets the diff mode to create a canvas with the difference
 	 * @member IM.prototype
 	 * @param {Object} oLocalContainerDiff
 	 * @returns {Object} Element where put the result canvas
 	 */
-	IM.prototype.setDiff = function setDiff(oLocalContainerDiff) {
+	IM.prototype.showDiffInCanvas = function showDiffInCanvas(oLocalContainerDiff) {
 		oContainerDiff = oLocalContainerDiff;
 		return oContainerDiff;
 	};
 	/**
-	 * setPercentageDiff must be used if you want to check if the match you want is correct.
+	 * setTolerance must be used if you want to check if the match you want is correct.
 	 * It is important to assign a tolerance of difference between images.
 	 * If the image has a difference lower than nMinPercentage the image will be treated as ok.
 	 * @member IM.prototype
 	 * @param {Number} nMinPercentage
 	 */
-	IM.prototype.setPercentageDiff = function percentageDiff(nMinPercent) {
+	IM.prototype.setTolerance = function percentageDiff(nMinPercent) {
 		nMinPercentage = nMinPercent;
 		return nMinPercentage;
 	};

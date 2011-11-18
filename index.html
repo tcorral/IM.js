@@ -1,19 +1,7 @@
-<!DOCTYPE html> <!-- The new doctype -->
 <html>
     <head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-        <title>IM.js  Fast image comparison pixel by pixel.</title>
-
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
-
-        <!-- Internet Explorer HTML5 enabling code: -->
-        <!--[if IE]>
-        	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<link href="css/ie.css" rel="stylesheet" type="text/css"/>
-        <![endif]-->
-        <script type="text/javascript">
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+         <script type="text/javascript">
 
 			var _gaq = _gaq || [];
 		  	_gaq.push(['_setAccount', 'UA-26982186-1']);
@@ -27,296 +15,261 @@
 
 		</script>
     </head>
-
     <body>
+        <h1><span>IM.js</span> <br/> Quick image comparison pixel by pixel.</h1>
+        <ul id="nav">
+        	<li>
+        		<a href="#info">Info</a>
+        	</li>
+        	<li>
+        		<a href="#api">API</a>
+        	</li>
+        	<li>
+        		<a href="#code_examples">Code examples</a>
+        	</li>
+        	<li>
+        		<a href="http://tcorral.github.com/IM.js/examples_and_documents/index.html">Examples</a>
+        	</li>
+        	<li>
+        		<a href="#download">Download</a>
+        	</li>
+        	<li>
+        		<a href="#license">License</a>
+        	</li>
+        </ul>
+        <section id="middle">
+			<ul>
+				<li id="info">
+					<article> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+	                    <h3>IM.js checks all your images using canvas pixel by pixel in record time.</h3>
 
-    	<section id="page"> <!-- Defining the #page section with the section tag -->
+	                    <div class="line"></div>
 
-            <header> <!-- Defining the header section of the page with the appropriate tag -->
+	                    <div class="articleBody clear">
+	                    	<h4>History:</h4>
+	                        <p>
+	                        	One month ago I needed to test the rendering url results in different browsers, and make it automatic and use it with Jenkins (C.I. server).<br/>
+	                        	I found some desktop tools to compare images but that are not for use with Jenkins.<br/>
+	                        	I found some Javascript classes that only check the MD5 and Base65 encoding for the image.<br/>
+	                        	<div class="mLeft20">
+	                        		This was not useful, because I didn't want to check different image files.<br/>
+	                        		I want to check different images seeking for different pixel info, because different compression returns different image file info.
+	                        	</div>
+	                        </p>
+	                        <h4>Description:</h4>
+	                        <p>
+	                        	Compare images pixel by pixel is a slow and heavy work to our computer!<br/>
+	                        	IM.js has come to solve this problem!<br/>
+	                        </p>
+	                        <h4>Designed to:</h4>
+	                    	<ul id='benefitsList'>
+	                    		<li>
+	                    			Compare images pixel by pixel in a fast and not blocking way.
+	                    		</li>
+	                    		<li>
+	                    			Be used in environments to automatize testing of web url snapshots.
+	                    		</li>
+	                    		<li>
+	                    			Be framework agnostic.
+	                    		</li>
+	                    	</ul>
+	                    	<h4>Install:</h4>
+	                        <p>
+	                        	&lt;script type="text/javascript" src="/path/to/IM.js"&gt;&lt;/script&gt;<br/>
+	                        </p>
+	                    </div>
+	                </article>
+				</li>
+				<li id="api">
+					<article>
+	                    <h3>IM.js API</h3>
 
-                <hgroup>
-                    <h1>
-                    	<img src="img/logo.png" alt="logo" width="98" height="87"/>
-                    	IM.js
-                    </h1>
-                    <h2>Fast image comparison pixel by pixel.</h2>
-                </hgroup>
-                <hgroup class="downloads">
-                	<a href="http://github.com/tcorral/IM.js/zipball/master">
-	        			<img border="0" width="90" alt="zip_icon" src="img/zip.png">
-	        		</a>
-	      			<a href="http://github.com/tcorral/IM.js/tarball/master">
-	        			<img border="0" width="90"  alt="tar_icon" src="img/tar.png">
-	        		</a>
-                </hgroup>
-                <hgroup>
-                	<nav class="clear"> <!-- The nav link semantically marks your main site navigation -->
-	                    <ul>
-	                        <li><a href="#info">Info</a></li>
-	                        <li><a href="#api">API</a></li>
-	                        <li><a href="#examples">Examples</a></li>
-	                        <li><a href="#download">Download</a></li>
-	                        <li><a href="#license">License</a></li>
-	                    </ul>
-	                </nav>
-                </hgroup>
-            </header>
+	                    <div class="line"></div>
 
-            <section id="articles"> <!-- A new section with the articles -->
+	                    <div class="articleBody clear">
+	                   		<h4>IM.<em>setDebug(bDebug)</em></h4>
+	                   			<p>Sets the debug mode.</p>
+	                   			<p>When debug mode is on, the class sends info about how many time tooks the comparison. And if for some reason it returns that one image is different, the canvas is hightlighted with a red border.</p>
+	                   			<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											bDebug : {Boolean} true or false (Default is false).
+										</li>
+									</ul>
+	                   		<h4>IM.<em>setAsynchronous(bAsync)</em></h4>
+	                   			<p>Sets the asynchronous mode.</p>
+	                   			<p>When asynchronous mode is on, the loop will be launched in a non blocking system. Asynchronous mode must be used only if there are some problems with browser performance.</p>
+	                   			<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											bAsync : {Boolean} true or false (Default is false).
+										</li>
+									</ul>
+							<h4>IM.<em>image</em></h4>
+								<p>Is a reference to the config object for images.</p>
+								<p>new IM.image(sPath, nWidth, nHeight)</p>
+								<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											sPath : {String} Url/src to the image to be loaded.
+										</li>
+										<li>
+											nWidth : {Number} Width of the image.
+										</li>
+										<li>
+											nHeight : {Number} Height of the image.
+										</li>
+									</ul>
+							<h4>IM.<em>compare(DOM_Element, aImages, fpSucessCallback, fpFailCallback)</em></h4>
+								<p>This compare mode creates the canvas inside the DOM_Element containing the aImages. If all the images are the same the fpSuccessCallback will be executed, if any of the image is different the fpFailCallback will be executed.</p>
+								<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											DOM_Element : {DOM} Element where add all the needed canvas (one canvas per image).
+										</li>
+										<li>
+											aImages : {Array} Array of config image objects (see IM.image).
+										</li>
+										<li>
+											fpSucessCallback : {Function} Callback that will be triggered if all the images are equal.
+										</li>
+										<li>
+											fpFailCallback : {Function} Callback that will be triggered if any of the images is different.
+										</li>
+									</ul>
 
-				<!-- Article 1 start -->
+							<h4>IM.<em>compare(aCanvas, fpSucessCallback, fpFailCallback)</em></h4>
+								<p>This compare mode gets an array of canvas containing the aImages. If all the images are the same the fpSuccessCallback will be executed, if any of the image is different the fpFailCallback will be executed.</p>
+								<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											aCanvas : {Array} Array of canvas with images to be compared.
+										</li>
+										<li>
+											fpSucessCallback : {Function} Callback that will be triggered if all the images are equal.
+										</li>
+										<li>
+											fpFailCallback : {Function} Callback that will be triggered if any of the images is different.
+										</li>
+									</ul>
 
-                <div class="line"></div>  <!-- Dividing line -->
+							<h4>IM.<em>showDiffInCanvas(oDOM)</em></h4>
+								<p>This method creates a canvas where the two different images are joined to see the differences at one sight.</p>
+								<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											oDOM : {DOM} Element where append the canvas.
+										</li>
+									</ul>
 
-                <article id="info"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
-                    <h3>IM.js checks all your images using canvas pixel by pixel in record time.</h3>
+							<h4>IM.<em>setTolerance(nPercentage)</em></h4>
+								<p>This method sets a tolerance percentage to mark an image as ok or ko.</p>
+								<h6 class="mLeft40">Params:</h6>
+									<ul class="mLeft80">
+										<li>
+											nPercentage : {Number} Number of percentage.
+										</li>
+									</ul>
+	                    </div>
+	                </article>
+				</li>
+				<li id="code_examples">
+					<article>
+	                    <h3>Code examples</h3>
 
-                    <div class="line"></div>
+	                    <div class="line"></div>
 
-                    <div class="articleBody clear">
-                    	<h4>History:</h4>
-                        <p>
-                        	One month ago I needed to test the rendering url results in different browsers, and make it automatic and use it with Jenkins (C.I. server).<br/>
-                        	I found some desktop tools to compare images but that are not for use with Jenkins.<br/>
-                        	I found some Javascript classes that only check the MD5 and Base65 encoding for the image.<br/>
-                        	<div class="mLeft20">
-                        		This was not useful, because I didn't want to check different image files.<br/>
-                        		I want to check different images seeking for different pixel info, because different compression returns different image file info.
-                        	</div>
-                        </p>
-                        <h4>Description:</h4>
-                        <p>
-                        	Compare images pixel by pixel is a slow and heavy work to our computer!<br/>
-                        	IM.js has come to solve this problem!<br/>
-                        </p>
-                        <h4>Designed to:</h4>
-                    	<ul id='benefitsList'>
-                    		<li>
-                    			Compare images pixel by pixel in a fast and not blocking way.
-                    		</li>
-                    		<li>
-                    			Be used in environments to automatize testing of web url snapshots.
-                    		</li>
-                    		<li>
-                    			Be framework agnostic.
-                    		</li>
-                    	</ul>
-                    	<h4>Install:</h4>
-                        <p>
-                        	&lt;script type="text/javascript" src="/path/to/IM.js"&gt;&lt;/script&gt;<br/>
-                        </p>
-                    </div>
-                    <a href="#" class="up">Go UP</a>
-                </article>
-
-				<!-- Article 1 end -->
-
-
-				<!-- Article 2 start -->
-
-                <div class="line"></div>
-
-                <article id="api">
-                    <h3>IM.js API</h3>
-
-                    <div class="line"></div>
-
-                    <div class="articleBody clear">
-                   		<h4>IM.<em>setDebug(bDebug)</em></h4>
-                   			<p>Sets the debug mode.</p>
-                   			<p>When debug mode is on, the class sends info about how many time tooks the comparison. And if for some reason it returns that one image is different, the canvas is hightlighted with a red border.</p>
-                   			<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										bDebug : {Boolean} true or false (Default is false).
-									</li>
-								</ul>
-                   		<h4>IM.<em>setAsynchronous(bAsync)</em></h4>
-                   			<p>Sets the asynchronous mode.</p>
-                   			<p>When asynchronous mode is on, the loop will be launched in a non blocking system. Asynchronous mode must be used only if there are some problems with browser performance.</p>
-                   			<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										bAsync : {Boolean} true or false (Default is false).
-									</li>
-								</ul>
-						<h4>IM.<em>image</em></h4>
-							<p>Is a reference to the config object for images.</p>
-							<p>new IM.image(sPath, nWidth, nHeight)</p>
-							<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										sPath : {String} Url/src to the image to be loaded.
-									</li>
-									<li>
-										nWidth : {Number} Width of the image.
-									</li>
-									<li>
-										nHeight : {Number} Height of the image.
-									</li>
-								</ul>
-						<h4>IM.<em>compare(DOM_Element, aImages, fpSucessCallback, fpFailCallback)</em></h4>
-							<p>This compare mode creates the canvas inside the DOM_Element containing the aImages. If all the images are the same the fpSuccessCallback will be executed, if any of the image is different the fpFailCallback will be executed.</p>
-							<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										DOM_Element : {DOM} Element where add all the needed canvas (one canvas per image).
-									</li>
-									<li>
-										aImages : {Array} Array of config image objects (see IM.image).
-									</li>
-									<li>
-										fpSucessCallback : {Function} Callback that will be triggered if all the images are equal.
-									</li>
-									<li>
-										fpFailCallback : {Function} Callback that will be triggered if any of the images is different.
-									</li>
-								</ul>
-
-						<h4>IM.<em>compare(aCanvas, fpSucessCallback, fpFailCallback)</em></h4>
-							<p>This compare mode gets an array of canvas containing the aImages. If all the images are the same the fpSuccessCallback will be executed, if any of the image is different the fpFailCallback will be executed.</p>
-							<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										aCanvas : {Array} Array of canvas with images to be compared.
-									</li>
-									<li>
-										fpSucessCallback : {Function} Callback that will be triggered if all the images are equal.
-									</li>
-									<li>
-										fpFailCallback : {Function} Callback that will be triggered if any of the images is different.
-									</li>
-								</ul>
-
-						<h4>IM.<em>setDiff(oDOM)</em></h4>
-							<p>This method creates a canvas where the two different images are joined to see the differences at one sight.</p>
-							<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										oDOM : {DOM} Element where append the canvas.
-									</li>
-								</ul>
-
-						<h4>IM.<em>setPercentageDiff(nPercentage)</em></h4>
-							<p>This method sets a tolerance percentage to mark an image as ok or ko.</p>
-							<h6 class="mLeft40">Params:</h6>
-								<ul class="mLeft80">
-									<li>
-										nPercentage : {Number} Number of percentage.
-									</li>
-								</ul>
-                    </div>
-                    <a href="#" class="up">Go UP</a>
-                </article>
-
-				<!-- Article 2 end -->
-
-				<!-- Article 3 start -->
-
-                <div class="line"></div>
-
-                <article id="examples">
-                    <h3>Examples</h3>
-
-                    <div class="line"></div>
-
-                    <div class="articleBody clear">
-                    	<h5>Sets debug mode on:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setDebug</strong>(true);
-                    			</code>
-                    		</pre>
-                    	<h5>Sets debug mode off:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setDebug</strong>(false);
-                    			</code>
-                    		</pre>
-                    	<h5>Set asynchronous mode on:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setAsynchronous</strong>(true);
-                    			</code>
-                    		</pre>
-                    	<h5>Set asynchronous mode off:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setAsynchronous</strong>(false);
-                    			</code>
-                    		</pre>
-                    	<h5>Set asynchronous mode on:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setAsynchronous</strong>(true);
-                    			</code>
-                    		</pre>
-                    	<h5>Create a new config image object:</h5>
-                    		<pre>
-                    			<code>
-	new IM.<strong>image</strong>('path/to/images/image.png', 100, 100);
-                    			</code>
-                    		</pre>
-                    	<h5>Compare images creating canvas and images using config image objects:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>compare</strong>(document.body,
+	                    <div class="articleBody clear">
+	                    	<h5>Sets debug mode on:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setDebug</strong>(true);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Sets debug mode off:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setDebug</strong>(false);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Set asynchronous mode on:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setAsynchronous</strong>(true);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Set asynchronous mode off:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setAsynchronous</strong>(false);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Set asynchronous mode on:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setAsynchronous</strong>(true);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Create a new config image object:</h5>
+	                    		<pre>
+	                    			<code>
+  new IM.<strong>image</strong>('path/to/images/image.png', 100, 100);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Compare images creating canvas and images using config image objects:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>compare</strong>(document.body,
 	[
 		new IM.image('path/to/images/image.png', 100, 100),
-        	new IM.image('path/to/images/image2.png', 100, 100),
-        	new IM.image('path/to/images/image.png', 100, 100),
-        	new IM.image('path/to/images/image2.png', 100, 100)
+	       	new IM.image('path/to/images/image2.png', 100, 100),
+	       	new IM.image('path/to/images/image.png', 100, 100),
+	       	new IM.image('path/to/images/image2.png', 100, 100)
 	],
-	function success(aCanvas, nElapsedTime) {
-        	// Code on success. All images have the same pixel info.
-    	},
-    	function fail(oCanvas, nElapsedTime) {
-        	// Code on failing. Any image is different from others
-    	});
-                    			</code>
-                    		</pre>
+	function success(aCanvas, nElapsedTime, nPercentageMatch) {
+	  // Code on success. All images have the same pixel info.
+	},
+	function fail(oCanvas, nElapsedTime, nPercentageMatch) {
+	 // Code on failing. Any image is different from others
+	});
+	                    			</code>
+	                    		</pre>
 
-                    	<h5>Compare images using existent canvas that contains images:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>compare</strong>(
+	                    	<h5>Compare images using existent canvas that contains images:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>compare</strong>(
 	[
 		document.getElementsById("canvas_1"),
-        	document.getElementsById("canvas_2"),
-        	document.getElementsById("canvas_3"),
-        	document.getElementsById("canvas_4")
+	       	document.getElementsById("canvas_2"),
+	       	document.getElementsById("canvas_3"),
+	       	document.getElementsById("canvas_4")
 	],
-	function success(aCanvas, nElapsedTime) {
-        	// Code on success. All images have the same pixel info.
-    	},
-    	function fail(oCanvas, nElapsedTime) {
-       		// Code on failing. Any image is different from others
-    	});
-                    			</code>
-                    		</pre>
-                    	<h5>Create a canvas object with the result of differences in images:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setDiff</strong>(document.body);
-                    			</code>
-                    		</pre>
-                    	<h5>Set a tolerance percentage value to mark an image as ok or ko:</h5>
-                    		<pre>
-                    			<code>
-	IM.<strong>setPercentageDiff</strong>(90);
-                    			</code>
-                    		</pre>
-                    	<h5><a href="http://tcorral.github.com/IM.js/examples_and_documents/index.html">Working examples</a></h5>
-                    </div>
-                    <a href="#" class="up">Go UP</a>
-                </article>
-
-				<!-- Article 3 end -->
-				<!-- Article 1 start -->
-
-                <div class="line"></div>  <!-- Dividing line -->
-
-                <article id="download"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+	function success(aCanvas, nElapsedTime, nPercentageMatch) {
+	  // Code on success. All images have the same pixel info.
+	},
+	function fail(oCanvas, nElapsedTime, nPercentageMatch) {
+	 // Code on failing. Any image is different from others
+	});
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Create a canvas object with the result of differences in images:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>showDiffInCanvas</strong>(document.body);
+	                    			</code>
+	                    		</pre>
+	                    	<h5>Set a tolerance percentage value to mark an image as ok or ko:</h5>
+	                    		<pre>
+	                    			<code>
+  IM.<strong>setTolerance</strong>(90);
+	                    			</code>
+	                    		</pre>
+	                    </div>
+	                </article>
+				</li>
+				<li id="download">
+					<article id="download"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
                     <h3>IM.js download.</h3>
 
                     <div class="line"></div>
@@ -337,62 +290,60 @@
                     		</li>
                     	</ul>
                     </div>
-                    <a href="#" class="up">Go UP</a>
                 </article>
+				</li>
+				<li id="license">
+					<article id="license">
+	                    <h3>IM.js License:</h3>
 
-				<!-- Article 1 end -->
+	                    <div class="line"></div>
 
-				<div class="line"></div>
+	                    <div class="articleBody clear">
+	                   		<h4>IM.js is licensed under the MIT license.</h4>
+	                   		<pre>
+							<code>
+  Copyright (c) 2011 Tom&aacute;as Corral Casas
 
-                <article id="license">
-                    <h3>IM.js License:</h3>
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+  and associated documentation files (the "Software"), to deal in the Software without
+  restriction, including without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
 
-                    <div class="line"></div>
+  The above copyright notice and this permission notice shall be included in all copies or
+  substantial portions of the Software.
 
-                    <div class="articleBody clear">
-                   		<h4>IM.js is licensed under the MIT license.</h4>
-                   		<pre>
-						<code>
-	Copyright (c) 2011 Tomás Corral Casas
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-	and associated documentation files (the "Software"), to deal in the Software without
-	restriction, including without limitation the rights to use, copy, modify, merge, publish,
-	distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in all copies or
-	substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
-	BUT NOT LIMITED	TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE	LIABLE FOR ANY CLAIM,
-	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF	CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-						</code>
-                   		</pre>
-                    </div>
-                    <a href="#" class="up">Go UP</a>
-                </article>
-
-            </section>
-
-        <footer> <!-- Marking the footer section -->
-
-           <div class="line"></div>
-
-           <p>Copyright 2011 - IM.js</p> <!-- Change the copyright notice -->
-
-
-
-        </footer>
-
-		</section> <!-- Closing the #page section -->
-		<a href="http://github.com/tcorral/IM.js/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
-        <!-- JavaScript Includes -->
-
-        <script src="js/jquery.js"></script>
-        <script src="js/jquery.scrollTo-min.js"></script>
-        <script src="js/script.js"></script>
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+  BUT NOT LIMITED	TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE	LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF	CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+							</code>
+	                   		</pre>
+	                    </div>
+	                </article>
+				</li>
+			</ul>
+        </section>
+        <div id="projects">
+            <div class="title">Other projects:</div>
+            <ul class="other_projects">
+                <li>
+                    <a href="http://tcorral.github.com/Hydra.js/">Hydra.js</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/Hermes.js/">Hermes.js</a>
+                </li>
+                <li>
+                    <a href="https://github.com/tcorral/Design-Patterns-in-Javascript/">Design Patterns</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/Cutter.js/">Cutter.js</a>
+                </li>
+                <li>
+                    <a href="http://tcorral.github.com/CSSplus/">CSSplus</a>
+                </li>
+            </ul>
+        </div>
     </body>
 </html>
