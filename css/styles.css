@@ -19,6 +19,17 @@ body {
 	margin-left: 5px;
 	margin-right: 5px;
 }
+::-webkit-scrollbar {
+	background-color: #222;
+	height: 1.5ex;
+	-webkit-border-radius: 1ex;
+}
+::-webkit-scrollbar-thumb {
+	border-top: 1px solid white;
+	background: #CCC -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F0F0F0), to(#D2D2D2));
+	-webkit-border-radius: 1ex;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
 #nav li a
 {
 	padding-left: 5px;
@@ -26,6 +37,14 @@ body {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	color: #000;
+	text-decoration: none;
+}
+hgroup
+{
+	position: absolute;
+}
+hgroup a
+{
 	text-decoration: none;
 }
 #nav li a
@@ -78,6 +97,14 @@ canvas
 	margin: 0;
 	padding: 0;
 }
+#middle ul li
+{
+	margin-bottom: 20px;
+}
+#middle ul#downloadList
+{
+	margin-left: 20px;
+}
 h6
 {
 	font-size: 12px;
@@ -85,7 +112,7 @@ h6
 #middle article
 {
 	width: 820px;
-	height: 340px;
+	height: 330px;
 	padding-left: 0px;
 	padding-right: 10px;
 	padding-left: 10px;
