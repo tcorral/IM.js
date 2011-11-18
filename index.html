@@ -1,6 +1,20 @@
 <html>
     <head>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+			function forceRefresh()
+			{
+				var oHead = document.getElementsByTagName("head")[0];
+				var oStyleSheet = document.createElement("style");
+				if(document.getElementById("force"))
+				{
+					oHead.removeChild(document.getElementById("force"));
+				}
+
+				oStyleSheet.id = "force";
+				oHead.appendChild(oStyleSheet);
+			}
+        </script>
          <script type="text/javascript">
 
 			var _gaq = _gaq || [];
@@ -27,22 +41,22 @@
         </hgroup>
         <ul id="nav">
         	<li>
-        		<a href="#info">Info</a>
+        		<a href="#info" onclick="forceRefresh()">Info</a>
         	</li>
         	<li>
-        		<a href="#api">API</a>
+        		<a href="#api" onclick="forceRefresh()">API</a>
         	</li>
         	<li>
-        		<a href="#code_examples">Code examples</a>
+        		<a href="#code_examples" onclick="forceRefresh()">Code examples</a>
         	</li>
         	<li>
         		<a href="http://tcorral.github.com/IM.js/examples_and_documents/index.html">Examples</a>
         	</li>
         	<li>
-        		<a href="#download">Download</a>
+        		<a href="#download" onclick="forceRefresh()">Download</a>
         	</li>
         	<li>
-        		<a href="#license">License</a>
+        		<a href="#license" onclick="forceRefresh()">License</a>
         	</li>
         </ul>
         <section id="middle">
