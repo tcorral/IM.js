@@ -3,6 +3,11 @@ IM.js is a class to compare images in canvas at pixel level.
 
 ## Changelog
 
+1.2.1
+
+* Changed setDiff to showDiffInCanvas
+* Changed setPercentageDiff to setTolerance
+
 1.2.0
 
 * Added setPercentageDiff method to set the tolerance percentage
