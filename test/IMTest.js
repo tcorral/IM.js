@@ -107,7 +107,7 @@ TestCase("IMCompare2Test", sinon.testCase({
 
 		IM.compare(document.body, [], function(){}, function(){});
 
-		assertEquals(2, window.Date.callCount);
+		assertEquals(3, window.Date.callCount);
 	},
 	"test should not call new Date if nStart is not supplied and bDebug is set to false": function()
 	{
