@@ -7,7 +7,7 @@ IM.js is a class to compare images in canvas at pixel level.
 
 * Refactored to reduce final size
 	* Reduction:
-		* Minimined:
+		* Minimized:
 			* 25% reduction -   2.880 bytes   -->     2.157 bytes
 		* Gzipped:
 			* 14% reduction -   1.442 bytes   -->     1.215 bytes
